@@ -131,7 +131,7 @@ class CNABParser {
             break;
 
           case 'money':
-            val = new BN(val);
+            val = new BN(val).dividedBy(100).toNumber();
             break;
 
           case 'date':
