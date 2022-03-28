@@ -210,11 +210,20 @@ class CNABParser {
       throw new Error(`Line ${idx}: No parser found for line.`);
     }
 
+    let objLength = Object.keys(parsedLine).length;  // 0
+
+    if(objLength == 0){
+      return;
+    }
+
     return parsedLine;
   }
 
   parse(data) {
-    return data.replace(/\r/g, '').split('\n').filter(line => line.trim().length > 0).map((line, idx) => this._parseLine(line, idx));
+
+    let dataParsed = data.replace(/\r/g, '').split('\n').filter(line => line.trim().length > 0).map((line, idx) => this._parseLine(line, idx));
+
+    return dataParsed.filter(n => n);
   }
 
 }
